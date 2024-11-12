@@ -6,6 +6,13 @@
 	Free for personal and commercial use under the CCA 3.0 license (beyondend.dev/license)
 */
 
+@font-face {
+    font-family: 'XSpace';
+    src: url('../fonts/xspace.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
@@ -120,6 +127,10 @@ input, select, textarea {
 		font-size: 16.5pt;
 		font-weight: normal;
 		line-height: 1.75;
+	}
+
+	.xspace-font {
+		font-family: 'XSpace', Arial, Helvetica, sans-serif;
 	}
 
 		@media screen and (max-width: 1680px) {
