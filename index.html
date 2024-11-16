@@ -132,7 +132,7 @@
 							<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
 							<div class="split style1">
 								<section>
-									<form id="emailForm" onsubmit="return false;">
+									<form id="emailForm" onsubmit="sendEmail(event);">
 										<div class="fields">
 											<div class="field half">
 												<label for="name">Name</label>
@@ -149,10 +149,11 @@
 										</div>
 										<ul class="actions">
 											<li>
-												<button type="button" class="button submit" onclick="sendEmail()">Send Message</button>
+												<button type="submit" class="button submit">Send Message</button>
 											</li>
 										</ul>
 									</form>
+									
 								</section>
 								<section>
 									<ul class="contact">
@@ -207,23 +208,32 @@
 			<script src="assets/js/main.js"></script>
 			<!-- Eklenen JavaScript Fonksiyonu -->
 			<script>
-				function sendEmail() {
+				function sendEmail(event) {
+					event.preventDefault(); // Formun varsayılan gönderimini engeller
+			
 					// Form alanlarından verileri al
-					const name = document.getElementById('name').value;
-					const email = document.getElementById('email').value;
-					const message = document.getElementById('message').value;
-
+					const name = document.getElementById('name').value.trim();
+					const email = document.getElementById('email').value.trim();
+					const message = document.getElementById('message').value.trim();
+			
+					// Boş alanları kontrol edin
+					if (name === '' || email === '' || message === '') {
+						alert('Lütfen tüm alanları doldurun.');
+						return;
+					}
+			
 					// E-posta içeriğini oluştur
 					const subject = `New Message from ${name}`;
-					const body = `Name: ${name}%0AEmail: ${email}%0A%0A${message}`;
-
+					const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+			
 					// mailto bağlantısını oluştur
 					const mailtoLink = `mailto:team@beyondend.dev?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
+			
 					// Kullanıcının varsayılan mail uygulamasını aç
 					window.location.href = mailtoLink;
 				}
 			</script>
+			
 
 	</body>
 </html>
